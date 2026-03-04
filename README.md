@@ -66,8 +66,17 @@ curl http://[DOCKFISH-TAILSCALE-IP]:11434/api/generate -d '{
 }'
 ```
 
-
 ## 🚀 TODO / Roadmap
+* ~~quellen.md füllen~~
+* ~~Sport & Klatsch filtern~~
+* Rohfassung aller Quellen anzeigen
+* Ausländische News nach Deutsch übersetzen
+* ~~RSS-Feed hinzufügen~~
+* ~~RSS-Feeds regelmäßig automatisch prüfen~~
+* aktuelle RSS-Feeds zu allen Quellen hinzufügen
+* ~~Alle Quellen verdauen und in "verdichtet" zusammenfassen~~ 
+* News einzelner Länder verdauen
+
 
 ### 1. YouTube-Fräse (Intelligente Video-Analyse)
 * **Status:** In Planung
