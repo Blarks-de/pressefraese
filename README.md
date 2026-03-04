@@ -13,6 +13,8 @@ Der Grundgedanke entstand, als mir eine KI zum ersten Mal Nachrichten basierend 
 
 ---
 
+Aktuell zu sehen auf https://blarks.de/news
+
 ## 🛠️ Technische Architektur
 
 ### Backend & Logik
@@ -69,7 +71,7 @@ curl http://[DOCKFISH-TAILSCALE-IP]:11434/api/generate -d '{
 ## 🚀 TODO / Roadmap
 * [x] ~~quellen.md füllen~~ ✅
 * [x] ~~Sport & Klatsch filtern~~ ✅
-* [ ] Rohfassung aller Quellen anzeigen
+* [x] Rohfassung aller Quellen anzeigen ✅
 * [ ] Ausländische News nach Deutsch übersetzen
 * [x] ~~RSS-Feed hinzufügen~~ ✅
 * [x] ~~RSS-Feeds regelmäßig automatisch prüfen~~ ✅
