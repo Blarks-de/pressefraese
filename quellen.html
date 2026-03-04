@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Nachrichtenquellen – Übersicht</title>
+    <link rel="icon" href="/pic/favicon/favicon_news.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #111; 
+            color: #eee; 
+            margin: 40px; 
+        }
+
+        h1 { color: #00ccff; }
+        a { color: #00ccff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        #last-check {
+            margin-top: 10px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        #content table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px;
+            background: #111;
+        }
+
+        #content th, #content td { 
+            border: 1px solid #333; 
+            padding: 10px; 
+            text-align: left; 
+        }
+
+        #content th { 
+            background: #222; 
+            color: #00ccff; 
+        }
+
+        #content tr:hover { 
+            background: #1a1a1a; 
+        }
+
+        #content strong { 
+            color: #00ccff; 
+        }
+
+        .ok { color: #00ff88; font-weight: bold; }
+        .fail { color: #ff4444; font-weight: bold; }
+
+        .error { 
+            color: #ff4444; 
+            border: 1px solid #ff4444; 
+            padding: 10px; 
+        }
+
+        .fresh { color: #00ff88; }
+        .warning { color: #ffaa00; }
+        .stale { color: #ff4444; }
+        
+        details summary {
+        cursor: pointer;
+        font-weight: bold;
+        }  
+
+        details summary::-webkit-details-marker {
+        color: #00ccff;
+}
+    </style>
+</head>
+<body>
+
+<a href="index.php">← Zurück zur Pressefräse</a>
+<h1>Masterliste Nachrichtenquellen</h1>
+
+<div id="last-check"></div>
+<div id="content">Lade Quellen...</div>
+
+<script>
+
+let lastScanTime = null;
+
+function getScanAgeInfo(dateString) {
+    const now = new Date();
+    const past = new Date(dateString);
+
+    const diffMs = now - past;
+    const diffMin = Math.floor(diffMs / 60000);
+    const diffHrs = Math.floor(diffMin / 60);
+    const diffDays = Math.floor(diffHrs / 24);
+
+    let text;
+
+    if (diffMin < 1) text = "gerade eben";
+    else if (diffMin < 60)
+        text = `vor ${diffMin} Minute${diffMin !== 1 ? 'n' : ''}`;
+    else if (diffHrs < 24)
+        text = `vor ${diffHrs} Stunde${diffHrs !== 1 ? 'n' : ''}`;
+    else
+        text = `vor ${diffDays} Tag${diffDays !== 1 ? 'en' : ''}`;
+
+    let cssClass;
+
+    if (diffMin < 30) cssClass = "fresh";
+    else if (diffMin < 120) cssClass = "warning";
+    else cssClass = "stale";
+
+    return { text, cssClass };
+}
+
+async function loadMarkdown() {
+    const contentDiv = document.getElementById('content');
+
+    try {
+        const response = await fetch('quellen.md');
+        if (!response.ok) throw new Error("quellen.md nicht gefunden");
+
+        const markdownText = await response.text();
+        contentDiv.innerHTML = marked.parse(markdownText);
+
+        insertStatusColumn();
+        await applyStatus();
+        await applyBias();
+
+    } catch (err) {
+        contentDiv.innerHTML = `<div class="error">${err.message}</div>`;
+    }
+}
+
+function insertStatusColumn() {
+    const table = document.querySelector('#content table');
+    if (!table) return;
+
+    const headerRow = table.querySelector('tr');
+
+    if (!headerRow.querySelector('.status-header')) {
+        const th = document.createElement('th');
+        th.textContent = "Status";
+        th.classList.add('status-header');
+        headerRow.insertBefore(th, headerRow.children[5]);
+    }
+}
+
+async function applyStatus() {
+
+    try {
+        const res = await fetch('rss-status.json');
+        if (!res.ok) throw new Error();
+
+        const data = await res.json();
+
+        if (data.checked_at) {
+            lastScanTime = data.checked_at;
+            updateLastScanDisplay();
+        }
+
+        const rows = document.querySelectorAll('#content table tr');
+
+        for (let i = 1; i < rows.length; i++) {
+
+            const cells = rows[i].querySelectorAll('td');
+            if (cells.length < 6) continue;
+
+            const rssCell = cells[5];
+            const link = rssCell.querySelector('a');
+
+            if (!rows[i].querySelector('.status-cell')) {
+                const statusCell = document.createElement('td');
+                statusCell.classList.add('status-cell');
+                rows[i].insertBefore(statusCell, rssCell);
+            }
+
+            const statusCell = rows[i].querySelector('.status-cell');
+
+            if (!link) {
+                statusCell.textContent = "–";
+                continue;
+            }
+
+            const url = link.href;
+            const status = data.feeds[url];
+
+            if (status === "ok") {
+                statusCell.innerHTML = '<span class="ok">✔</span>';
+            } else {
+                statusCell.innerHTML = '<span class="fail">✖</span>';
+            }
+        }
+
+    } catch {
+        document.getElementById('last-check').textContent = "Kein Status verfügbar.";
+    }
+}
+
+function updateLastScanDisplay() {
+    if (!lastScanTime) return;
+
+    const info = getScanAgeInfo(lastScanTime);
+    const el = document.getElementById('last-check');
+
+    el.innerHTML = `Letzter Scan: <span class="${info.cssClass}">${info.text}</span>`;
+}
+
+// Anzeige jede Minute aktualisieren
+setInterval(updateLastScanDisplay, 60000);
+
+async function applyBias() {
+    try {
+        const res = await fetch('bias.json');
+        if (!res.ok) return;
+
+        const raw = await res.json();
+
+        const biasData = {};
+        for (const key in raw) {
+            biasData[normalize(key)] = raw[key];
+        }
+
+        const rows = document.querySelectorAll('#content table tr');
+
+        for (let i = 1; i < rows.length; i++) {
+
+            const cells = rows[i].querySelectorAll('td');
+            if (cells.length < 2) continue;
+
+            const nameCell = cells[1];
+            const mediumName = nameCell.textContent.trim();
+            const normalized = normalize(mediumName);
+
+            if (!biasData[normalized]) continue;
+
+            const b = biasData[normalized];
+
+            if (nameCell.querySelector('details')) continue;
+
+            const details = document.createElement('details');
+            const summary = document.createElement('summary');
+            summary.textContent = mediumName;
+
+            const info = document.createElement('div');
+            info.style.marginTop = "8px";
+            info.style.fontSize = "0.9em";
+            info.style.lineHeight = "1.4";
+
+            info.innerHTML = `
+                <strong>Staat:</strong> ${b.staat}<br>
+                <strong>Iran:</strong> ${b.iran}<br>
+                <strong>Israel:</strong> ${b.israel}<br>
+                <strong>Golfstaaten:</strong> ${b.golf}<br>
+                <strong>Ton:</strong> ${b.ton}
+            `;
+
+            details.appendChild(summary);
+            details.appendChild(info);
+
+            nameCell.innerHTML = '';
+            nameCell.appendChild(details);
+        }
+
+    } catch (e) {
+        console.warn("Bias-Daten konnten nicht geladen werden.");
+    }
+}
+
+function normalize(str) {
+    return str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+}
+
+// Normalisierungsfunktion
+function normalize(str) {
+    return str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+}
+
+loadMarkdown();
+
+</script>
+
+</body>
+</html>

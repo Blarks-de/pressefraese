@@ -1,0 +1,32 @@
+# config/filters.txt
+# Filter-Begriffe für News-Klopper (Regex-fähig)
+# Leerzeilen und Zeilen mit # werden ignoriert
+
+# --- Sport ---
+sport
+fußball
+handball
+golf
+tennis
+bundesliga
+olympia
+champions league
+eishockey
+dfb-pokal
+
+# --- Klatsch & Promis ---
+klatsch
+promi
+stars
+reality-tv
+influencer
+
+# --- Werbung & Gewinnspiele ---
+gewinnspiel
+verlosung
+gratis
+rabatt
+
+# --- Sonstiges (nach Bedarf ergänzen) ---
+horoskop
+lotto

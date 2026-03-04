@@ -1,0 +1,37 @@
+{
+  "Al Jazeera": {
+    "staat": "Katar",
+    "iran": "kritisch, aber differenziert",
+    "israel": "stark kritisch",
+    "golf": "kritisch gegenüber Saudi/UAE",
+    "ton": "emotional, investigativ"
+  },
+  "Al Arabiya": {
+    "staat": "Saudi-Arabien",
+    "iran": "klar kritisch",
+    "israel": "eher moderat",
+    "golf": "pro-saudi",
+    "ton": "strategisch, sicherheitsfokussiert"
+  },
+  "Tehran Times": {
+    "staat": "Iran",
+    "iran": "pro-Regierung",
+    "israel": "sehr kritisch",
+    "golf": "kritisch gegenüber Saudi",
+    "ton": "ideologisch, konfrontativ"
+  },
+  "Ahram Online": {
+    "staat": "Ägypten",
+    "iran": "neutral-distanziert",
+    "israel": "vorsichtig",
+    "golf": "stabilitätsorientiert",
+    "ton": "diplomatisch, staatsnah"
+  },
+  "L'Orient-Le Jour": {
+    "staat": "Libanon (liberal)",
+    "iran": "kritisch gegenüber iranischem Einfluss",
+    "israel": "differenziert",
+    "golf": "skeptisch",
+    "ton": "analytisch, intellektuell"
+  }
+}

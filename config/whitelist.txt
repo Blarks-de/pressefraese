@@ -1,0 +1,32 @@
+# config/whitelist.txt
+# Whitelist-Begriffe für News-Klopper (Regex-fähig)
+# Treffer hier verhindern das Filtern des Artikels
+# Leerzeilen und # Kommentare werden ignoriert
+
+# --- Tech & Business (oft fälschlich gefiltert) ---
+roboter
+autonomes fahren
+elektroauto
+wayve
+tesla
+start-up
+milliarden
+investition
+finanzierung
+serie-b
+serie-c
+
+# --- Politik & Gesellschaft (wichtig trotz "Verkehr"-Wort) ---
+verkehrswende
+mobilitätswende
+co2-steuer
+klimapolitik
+ukraine
+
+
+# --- Spezifische Themen, die immer rein sollen ---
+künstliche intelligenz
+machine learning
+openclaw
+openrouter
+openai

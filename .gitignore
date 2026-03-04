@@ -1,0 +1,11 @@
+# Temporäre Dateien
+*.log
+.DS_Store
+Thumbs.db
+
+# Falls du Python nutzt
+__pycache__/
+*.py[cod]
+
+# Falls du Docker-Configs mit Geheimnissen hast
+.env
