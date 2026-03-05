@@ -3,6 +3,7 @@
 | Land | Medium / Quelle | Ausrichtung | Schlagzeile / Thema | URL | RSS-Feed |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **HAMBURG** | | | | | |
+| 🇩🇪 | **NDR** | Hamburg Journal | Nur Lokales | https://www.ndr.de | https://www.ndr.de |
 | 🇩🇪 | **BILD** | Boulevard | Nur Lokales | https://www.bild.de | https://www.bild.de/feed/alles.xml |
 | 🇩🇪 | **MOPO** | Boulevard | Nur Lokales Hamburg | https://www.mopo.de | https://mopo.de/feed |
 | 🇩🇪 | **Hamburger Abendblatt** | HH: Bürgerlich | Wohnungsbaukrise & Lehrer-Awards | https://www.abendblatt.de/ | https://www.abendblatt.de/hamburg/rss |
@@ -23,7 +24,7 @@
 | 🇩🇰 | **Børsen** | Wirtschaft | Novo Nordisk Marktanalyse | https://borsen.dk | https://borsen.dk/rss |
 | 🇩🇰 | **Jyllands-Posten** | Liberal-konservativ | US-Zölle & Pharma-Exporte | https://jyllands-posten.dk | https://feeds.feedburner.com/jyllands-posten |
 | 🇩🇰 | **Politiken** | Linksliberal | Hilfe beim Wiederaufbau | https://politiken.dk | https://politiken.dk/rss/senestenyt.rss |
-| 🇫🇷 | **AFP** | Neutral / Wire | Agenturmeldungen global | https://www.afp.com/ | https://www.sitepoint.com/it-was-a-good-idea-for-the-afp-to-turn-off-rss/ |
+| 🇫🇷 | **AFP** | Neutral / Wire | Agenturmeldungen global | https://www.afp.com/ | Kein RSS |
 | 🇫🇷 | **Le Figaro** | Konservativ | US-Botschafter-Eklat | https://www.lefigaro.fr/ | https://www.lefigaro.fr/rss/figaro_actualites.xml |
 | 🇫🇷 | **Le Monde** | Linksliberal | Ende der transatlantischen Illusion | https://www.lemonde.fr/ | https://www.lemonde.fr/rss/une.xml  |
 | 🇬🇧 | **The Guardian** | Linksliberal | Moralische Pflicht vs. Trump | https://www.theguardian.com | https://www.theguardian.com/uk/rss |

@@ -1,4 +1,7 @@
-# 📰 Die Pressefräse
+# 📰 Die Pressefräse 
+### Transparenzmaschine für Nachrichten
+
+Die Pressefräse ist ein Werkzeug, um zu sehen, wie verschiedene Medien über dieselbe Welt berichten.
 
 Ein privates Framework zur Aggregation, Analyse und Verdichtung internationaler Nachrichtenquellen. Die Pressefräse ist darauf ausgelegt, mediale Ausrichtungen (Bias) sichtbar zu machen und komplexe Nachrichtenlagen mittels lokaler KI (Ollama) zu "verdauen".
 
@@ -13,7 +16,18 @@ Der Grundgedanke entstand, als mir eine KI zum ersten Mal Nachrichten basierend 
 
 ---
 
-Aktuell zu sehen auf https://blarks.de/news
+## Projektstatus
+
+Experimentelles Projekt in aktiver Entwicklung.
+
+Aktuell im Einsatz auf:
+https://blarks.de/news
+
+Eine Übersicht über geplante Funktionen und langfristige Ideen
+findet sich hier:
+
+→ 🗺️ [Projekt-Roadmap](docs/ROADMAP.md)
+→ 🗺️ [Ideen-Sammlung](docs/IDEEN.md)
 
 ## 🛠️ Technische Architektur
 
@@ -58,6 +72,11 @@ Die Pressefräse nutzt eine verteilte Architektur, um Performance und Erreichbar
 
 
 ### Docker & Ollama
+
+Ollama wird bevorzugt als Docker-Container betrieben.
+Die KI-Verarbeitung kann dabei auf einem separaten Host erfolgen
+(z.B. im lokalen Netzwerk oder über ein VPN).
+
 Die `compose.yml` integriert Ollama in das bestehende n8n-Netzwerk für automatisierte Workflows.
 
 ```bash
@@ -68,35 +87,5 @@ curl http://[DOCKFISH-TAILSCALE-IP]:11434/api/generate -d '{
 }'
 ```
 
-## 🚀 TODO / Roadmap
-* [x] ~~quellen.md füllen~~ ✅
-* [x] ~~Sport & Klatsch filtern~~ ✅
-* [x] Rohfassung aller Quellen anzeigen ✅
-* [ ] Ausländische News nach Deutsch übersetzen
-* [x] ~~RSS-Feed hinzufügen~~ ✅
-* [x] ~~RSS-Feeds regelmäßig automatisch prüfen~~ ✅
-* [ ] aktuelle RSS-Feeds zu allen Quellen hinzufügen
-* [x] ~~Alle Quellen verdauen und in "verdichtet" zusammenfassen~~ ✅
-* [ ] News einzelner Länder verdauen
-
-
-### 1. YouTube-Fräse (Intelligente Video-Analyse)
-* **Status:** In Planung
-* **Ziel:** Integration von Video-Content ohne den Zeitaufwand von 45-Minuten-Sessions.
-* **Workflow:**
-    * `scraper.php` extrahiert Video-URLs aus RSS-Feeds.
-    * **Gemini-Integration:** Übergabe der URLs zur Inhaltsanalyse.
-    * **Output:** Automatisierte Zusammenfassung inkl. Direktlink zum Video im Dashboard.
-
-### 2. Automatisierte "Verdauung" (Dockfish-Pipeline)
-* **Ziel:** Den "News Verdichtet"-Tab vollautomatisch via Cronjob befüllen.
-* **Workflow:** Scraper (Strato) → Trigger via Tailscale → Ollama (Dockfish) → Rückgabe der `digest-*.html`.
-
-### 3. Erweiterung der Bias-Datenbank
-* Kontinuierliche Pflege der `bias.json`, um mehr internationale Perspektiven (Asien, Südamerika) abzubilden.
-
-### 4. UI-Optimierung für Multimedia
-* Implementierung von Video-Cards und Thumbnail-Placeholdern im Dashboard.
-
----
 *„Die Pressefräse fräst, damit du nicht alles selbst lesen (oder sehen) musst.“*
+---

@@ -1,6 +1,7 @@
 {
-    "checked_at": "2026-03-04T10:00:02+01:00",
+    "checked_at": "2026-03-05T08:00:01+01:00",
     "feeds": {
+        "https:\/\/www.ndr.de": "fail",
         "https:\/\/www.bild.de\/feed\/alles.xml": "ok",
         "https:\/\/mopo.de\/feed": "ok",
         "https:\/\/www.abendblatt.de\/hamburg\/rss": "ok",
@@ -15,7 +16,6 @@
         "https:\/\/borsen.dk\/rss": "ok",
         "https:\/\/feeds.feedburner.com\/jyllands-posten": "fail",
         "https:\/\/politiken.dk\/rss\/senestenyt.rss": "ok",
-        "https:\/\/www.sitepoint.com\/it-was-a-good-idea-for-the-afp-to-turn-off-rss\/": "fail",
         "https:\/\/www.lefigaro.fr\/rss\/figaro_actualites.xml": "ok",
         "https:\/\/www.lemonde.fr\/rss\/une.xml": "ok",
         "https:\/\/www.theguardian.com\/uk\/rss": "ok",

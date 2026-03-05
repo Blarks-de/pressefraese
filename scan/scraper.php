@@ -20,16 +20,19 @@ $start_time = microtime(true);
 $all_articles = [];
 $stats = ['success' => 0, 'failed' => 0, 'skipped' => 0, 'filtered' => 0];
 
-// Alle Quellen durchlaufen (nach Regionen sortiert)
-foreach ($quellen as $region => $sources) {
-    if (empty($sources)) continue;
+// Hauptschleife: Geht durch jede Region (z.B. HAMBURG, DE, WELT)
+foreach ($quellen as $region => $sources) { 
+    if (!is_array($sources) || empty($sources)) continue;
     
     log_msg("Verarbeite Region: $region (" . count($sources) . " Quellen)");
     
+    // Untergeordnete Schleife: Geht durch jedes Medium in dieser Region
     foreach ($sources as $source) {
-        $name = $source['name'];
+        if (!is_array($source)) continue;
+
+        $name = $source['name'] ?? 'Unbekannt';
         $rss_url = $source['rss'] ?? null;
-        
+    
         // Skip wenn kein RSS-Feed vorhanden
         if (empty($rss_url)) {
             log_msg("⊘ $name: Kein RSS-Feed definiert", 'SKIP');
@@ -37,7 +40,7 @@ foreach ($quellen as $region => $sources) {
             continue;
         }
         
-        // YouTube-Feeds speziell behandeln (oft XML-Namespace-Probleme)
+        // YouTube-Feeds speziell behandeln
         if (str_contains($rss_url, 'youtube.com') || str_contains($rss_url, 'youtu.be')) {
             log_msg("⚠ $name: YouTube-Feed benötigt spezielle Behandlung (TODO)", 'INFO');
             $stats['skipped']++;
@@ -48,58 +51,50 @@ foreach ($quellen as $region => $sources) {
         
         $rss_content = fetch_url($rss_url);
         if (!$rss_content) {
-            log_msg("❌ $name: Feed nicht abrufbar (Timeout/HTTP-Fehler)", 'ERROR');
+            log_msg("❌ $name: Feed nicht abrufbar", 'ERROR');
             $stats['failed']++;
             continue;
         }
         
-       $articles = parse_rss_feed($rss_content, $name);
-if (empty($articles)) {
-    log_msg("⚠ $name: Keine validen Artikel gefunden", 'WARN');
-    $stats['skipped']++;
-    continue;
-}
+        $articles = parse_rss_feed($rss_content, $name);
+        if (empty($articles)) {
+            log_msg("⚠ $name: Keine validen Artikel gefunden", 'WARN');
+            $stats['skipped']++;
+            continue;
+        }
 
-    // ======================================================
-    // 🌍 Country-Feld ergänzen (Region = Herkunftsland)
-    // ======================================================   
-    foreach ($articles as &$article) {
-    $article['country'] = $region;
-    }
-    unset($article); // Referenz sauber lösen
+        // Region (z.B. HAMBURG) in jeden Artikel schreiben für die spätere Anzeige
+        foreach ($articles as &$article) {
+            $article['country'] = $region; 
+        }
+        unset($article);
 
-        
-        // ========================================================================
-        // 🧹 HIER WIRD GEFILTERT (nach dem Extrahieren der Artikel)
-        // ========================================================================
-        $filtered_count = 0;
+        // Filterung (unerwünschte Begriffe aussortieren)
         $unfiltered_articles = [];
-        
         foreach ($articles as $article) {
             if (should_filter_article($article['title'], $article['snippet'])) {
                 log_msg("⊘ $name: Gefiltert → " . $article['title'], 'FILTER');
-                $filtered_count++;
+                $stats['filtered']++;
             } else {
                 $unfiltered_articles[] = $article;
             }
         }
         
-        $stats['filtered'] += $filtered_count;
         $all_articles = array_merge($all_articles, $unfiltered_articles);
         $stats['success']++;
         
-        log_msg("✅ $name: " . count($unfiltered_articles) . " Artikel (von " . count($articles) . ", $filtered_count gefiltert)");
+        log_msg("✅ $name: " . count($unfiltered_articles) . " Artikel");
         
-        // Kleine Pause zwischen Requests (Rate-Limiting)
-        usleep(300000); // 300ms
-    }
+        // Rate-Limiting: 300ms Pause zwischen den Quellen
+        usleep(300000); 
+    } 
 }
 
-// Deduplizieren & Sortieren (neueste zuerst)
+// Deduplizieren (doppelte URLs entfernen) & Sortieren (neueste zuerst)
 $all_articles = deduplicate_articles($all_articles);
 usort($all_articles, fn($a, $b) => strtotime($b['published']) <=> strtotime($a['published']));
 
-// Cache speichern
+// Cache speichern (data/news.json)
 if (save_news_cache($all_articles)) {
     log_msg("💾 Cache gespeichert: " . count($all_articles) . " Artikel in " . NEWS_CACHE);
 } else {
@@ -114,20 +109,17 @@ $summary = sprintf(
 );
 log_msg($summary);
 
-// CLI-Output
+// CLI-Output für das Terminal
 if (php_sapi_name() === 'cli') {
     echo "\n$summary\n";
-    echo "Log: " . LOG_FILE . "\n";
-    echo "Cache: " . NEWS_CACHE . "\n";
     exit($stats['failed'] > 0 ? 1 : 0);
 }
 
-// Web-Output (JSON für n8n/AJAX)
+// Web-Output (JSON für AJAX/Dashboard)
 header('Content-Type: application/json');
 echo json_encode([
     'status' => 'ok',
     'stats' => $stats,
     'articles_count' => count($all_articles),
-    'duration_sec' => $duration,
-    'cache_file' => NEWS_CACHE
+    'duration_sec' => $duration
 ], JSON_UNESCAPED_UNICODE);
