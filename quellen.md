@@ -15,6 +15,7 @@
 | 🇩🇪 | **FAZ** | Rechts-kons. | Ukraine-Jahrestag: Strategie | https://www.faz.net/aktuell/ | https://www.faz.net/rss/aktuell |
 | 🇩🇪 | **Focus** | Wirtschaftslib. | Rentendebatte & Haushaltskritik | https://www.focus.de/ | https://www.focus.de/rss |
 | 🇩🇪 | **Süddeutsche** | Linksliberal | Soziale Folgen & Klima-Rekorde | https://www.sueddeutsche.de/ | https://rss.sueddeutsche.de/rss/Alles |
+| 🇩🇪 | **Jüdische Allgemeine** | Liberal-traditionell | Jüdisches Leben in Deutschland | https://www.juedische-allgemeine.de/ | https://www.juedische-allgemeine.de/rss |
 | **Youtube** | | | | | |
 | 🇩🇪 | **Mark Reicher (YT)** | Geopolitik | Allianz Russland & Iran | https://www.youtube.com/@MarkReicher | *(YouTube)* |
 | 🇩🇪 | **MrWissen2Go (YT)** | Bildung | Warum der Krieg 2026 weitergeht | https://www.youtube.com/@MrWissen2go | *(YouTube)* |

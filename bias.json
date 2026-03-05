@@ -33,5 +33,481 @@
     "israel": "differenziert",
     "golf": "skeptisch",
     "ton": "analytisch, intellektuell"
+  },
+  "Juedische Allgemeine": {
+    "staat": "Deutschland",
+    "iran": "kritisch gegenüber dem Regime, menschenrechtsorientiert",
+    "israel": "grundsätzlich solidarisch, aber mit internen Debatten",
+    "golf": "neutral, kein regionaler Fokus",
+    "ton": "sachlich, kulturorientiert, liberal-traditionell"
+  },
+  "NDR": {
+    "staat": "Deutschland (öffentlich-rechtlich)",
+    "iran": "sachlich-kritisch, menschenrechtsorientiert",
+    "israel": "ausgewogen, solidarisch mit demokratischen Werten",
+    "golf": "neutral, entwicklungspolitisch reflektiert",
+    "ton": "faktisch, zurückhaltend, öffentlich-rechtlicher Neutralitätsauftrag"
+  },
+  "BILD": {
+    "staat": "Deutschland",
+    "iran": "emotional-kritisch, vereinfachend",
+    "israel": "solidarisch, aber reißerisch inszeniert",
+    "golf": "kaum Fokus, bei Konflikten westlich positioniert",
+    "ton": "boulevardesk, polarisierend, emotionalisierend"
+  },
+  "MOPO": {
+    "staat": "Deutschland (Hamburg)",
+    "iran": "lokal fokussiert, bei Außenpolitik vereinfachend",
+    "israel": "traditionell solidarisch, wenig Tiefe",
+    "golf": "kein Schwerpunkt",
+    "ton": "unterhaltungsorientiert, zugänglich, manchmal plakativ"
+  },
+  "Hamburger Abendblatt": {
+    "staat": "Deutschland",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "bürgerlich-solidarisch, transatlantisch",
+    "golf": "wirtschaftlich interessiert, stabilitätsorientiert",
+    "ton": "sachlich-bürgerlich, regional verwurzelt, konservativ-liberal"
+  },
+  "ARD Tagesschau": {
+    "staat": "Deutschland (öffentlich-rechtlich)",
+    "iran": "differenziert-kritisch, völkerrechtsbasiert",
+    "israel": "ausgewogen, demokratische Solidarität mit Kritikraum",
+    "golf": "neutral-analytisch, entwicklungspolitisch reflektiert",
+    "ton": "nüchtern, faktenbasiert, neutralitätsverpflichtet"
+  },
+  "Correctiv": {
+    "staat": "Deutschland (gemeinnützig)",
+    "iran": "kritisch-investigativ, menschenrechtsfokussiert",
+    "israel": "kritisch-solidarisch, zivilgesellschaftlich orientiert",
+    "golf": "transparent, korruptionskritisch, unabhängig",
+    "ton": "investigativ, aufklärend, transparenzorientiert"
+  },
+  "Der Spiegel": {
+    "staat": "Deutschland",
+    "iran": "kritisch-aufklärend, investigativ",
+    "israel": "solidarisch mit demokratischen Kräften, regierungskritisch möglich",
+    "golf": "kritisch gegenüber Autoritarismus, menschenrechtsorientiert",
+    "ton": "analytisch, investigativ, linksliberal"
+  },
+  "Die Zeit": {
+    "staat": "Deutschland",
+    "iran": "differenziert, intellektuell-kritisch",
+    "israel": "reflektiert-solidarisch, Debattenraum für Kritik",
+    "golf": "analytisch, globalisierungskritisch wo nötig",
+    "ton": "intellektuell, essayistisch, liberal"
+  },
+  "FAZ": {
+    "staat": "Deutschland",
+    "iran": "konservativ-kritisch, sicherheitspolitisch fokussiert",
+    "israel": "bürgerlich-solidarisch, transatlantisch verankert",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "sachlich, bürgerlich-konservativ, wirtschaftsnah"
+  },
+  "Focus": {
+    "staat": "Deutschland",
+    "iran": "kritisch, sicherheits- und wirtschaftsorientiert",
+    "israel": "solidarisch, technologie- und wirtschaftsaffin",
+    "golf": "wirtschaftsliberal, innovationsfokussiert",
+    "ton": "zugänglich, pragmatisch, liberal-konservativ"
+  },
+  "Sueddeutsche": {
+    "staat": "Deutschland",
+    "iran": "kritisch, menschenrechts- und zivilgesellschaftsorientiert",
+    "israel": "solidarisch mit demokratischen Kräften, innenpolitisch kritisch",
+    "golf": "progressiv, entwicklungspolitisch reflektiert",
+    "ton": "analytisch, linksliberal, gesellschaftskritisch"
+  },
+  "Berlingske": {
+    "staat": "Dänemark",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "solidarisch, sicherheitsbewusst",
+    "golf": "wirtschaftlich interessiert, stabilitätsorientiert",
+    "ton": "liberal-konservativ, analytisch"
+  },
+  "Boersen": {
+    "staat": "Dänemark",
+    "iran": "wirtschaftsorientiert, wenig Fokus",
+    "israel": "neutral, handelsfokussiert",
+    "golf": "pro-Business, investitionsfreundlich",
+    "ton": "sachlich, wirtschaftsliberal"
+  },
+  "Jyllands-Posten": {
+    "staat": "Dänemark",
+    "iran": "kritisch, freiheitsorientiert",
+    "israel": "solidarisch, sicherheitsfokussiert",
+    "golf": "kritisch bei Menschenrechtsfragen",
+    "ton": "liberal-konservativ, debattenfreudig"
+  },
+  "Politiken": {
+    "staat": "Dänemark",
+    "iran": "kritisch, zivilgesellschaftsnah",
+    "israel": "differenziert, menschenrechtsorientiert",
+    "golf": "entwicklungspolitisch reflektiert",
+    "ton": "sozialliberal, intellektuell"
+  },
+  "AFP": {
+    "staat": "Frankreich (Wire)",
+    "iran": "faktisch, neutral",
+    "israel": "ausgewogen, nachrichtenbasiert",
+    "golf": "neutral, global abdeckend",
+    "ton": "nüchtern, agenturtypisch, faktenfokussiert"
+  },
+  "Le Figaro": {
+    "staat": "Frankreich",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "bürgerlich-solidarisch, transatlantisch",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, etabliert, sachlich"
+  },
+  "Le Monde": {
+    "staat": "Frankreich",
+    "iran": "kritisch-analytisch, menschenrechtsorientiert",
+    "israel": "differenziert, demokratisch-solidarisch",
+    "golf": "globalisierungskritisch, entwicklungspolitisch",
+    "ton": "intellektuell, linksliberal, essayistisch"
+  },
+  "The Guardian": {
+    "staat": "Großbritannien",
+    "iran": "kritisch, menschenrechtsfokussiert",
+    "israel": "kritisch-solidarisch, innenpolitisch differenziert",
+    "golf": "progressiv, entwicklungspolitisch reflektiert",
+    "ton": "linksliberal, investigativ, gesellschaftskritisch"
+  },
+  "The Telegraph": {
+    "staat": "Großbritannien",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "solidarisch, transatlantisch verankert",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, etabliert, sachlich"
+  },
+  "The Times": {
+    "staat": "Großbritannien",
+    "iran": "kritisch, establishment-nah",
+    "israel": "solidarisch, sicherheitsbewusst",
+    "golf": "wirtschaftlich interessiert, neutral",
+    "ton": "konservativ, sachlich, mainstream"
+  },
+  "Corriere della Sera": {
+    "staat": "Italien",
+    "iran": "kritisch, EU-orientiert",
+    "israel": "ausgewogen, demokratisch-solidarisch",
+    "golf": "wirtschaftlich interessiert, stabilitätsorientiert",
+    "ton": "mitte-rechts, sachlich, mainstream"
+  },
+  "Il Sole 24 Ore": {
+    "staat": "Italien",
+    "iran": "wirtschaftsorientiert, wenig Fokus",
+    "israel": "neutral, handelsfokussiert",
+    "golf": "pro-Business, investitionsfreundlich",
+    "ton": "sachlich, wirtschaftsliberal"
+  },
+  "La Repubblica": {
+    "staat": "Italien",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "differenziert, zivilgesellschaftsnah",
+    "golf": "progressiv, entwicklungspolitisch reflektiert",
+    "ton": "linksliberal, gesellschaftskritisch"
+  },
+  "Gazeta Polska": {
+    "staat": "Polen",
+    "iran": "national-konservativ, sicherheitsorientiert",
+    "israel": "solidarisch, historisch reflektiert",
+    "golf": "kritisch bei Souveränitätsfragen",
+    "ton": "rechtsnational, identitär, polemisch"
+  },
+  "Gazeta Wyborcza": {
+    "staat": "Polen",
+    "iran": "kritisch, pro-EU, menschenrechtsorientiert",
+    "israel": "solidarisch, demokratisch verankert",
+    "golf": "liberal, entwicklungspolitisch reflektiert",
+    "ton": "linksliberal, intellektuell, oppositionell"
+  },
+  "Rzeczpospolita": {
+    "staat": "Polen",
+    "iran": "konservativ-kritisch, sicherheitsfokussiert",
+    "israel": "solidarisch, transatlantisch",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, wirtschaftsnah, sachlich"
+  },
+  "Meduza": {
+    "staat": "Russland (Exil)",
+    "iran": "kritisch gegenüber Autoritarismus, menschenrechtsorientiert",
+    "israel": "ausgewogen, demokratisch-solidarisch",
+    "golf": "kritisch bei Korruption/Unterdrückung",
+    "ton": "unabhängig, investigativ, aufklärend"
+  },
+  "Novaya Gazeta": {
+    "staat": "Russland (Exil)",
+    "iran": "kritisch, zivilgesellschaftsnah",
+    "israel": "differenziert, menschenrechtsorientiert",
+    "golf": "transparent, korruptionskritisch",
+    "ton": "unabhängig, intellektuell, investigativ"
+  },
+  "RIA Novosti": {
+    "staat": "Russland (staatlich)",
+    "iran": "pro-Kremlin-Linie, strategisch ausgerichtet",
+    "israel": "kritisch bei Konflikten, staatskonform",
+    "golf": "propagandistisch, anti-westlich",
+    "ton": "staatlich, narrativgesteuert, konfrontativ"
+  },
+  "RT": {
+    "staat": "Russland (staatlich)",
+    "iran": "pro-Regime, anti-westlich",
+    "israel": "stark kritisch, konfrontativ",
+    "golf": "propagandistisch, destabilisierend",
+    "ton": "agitatorisch, polarisierend, staatsnah"
+  },
+  "Aftonbladet": {
+    "staat": "Schweden",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "kritisch-solidarisch, innenpolitisch differenziert",
+    "golf": "progressiv, entwicklungspolitisch",
+    "ton": "sozialdemokratisch, boulevardnah, zugänglich"
+  },
+  "Dagens Nyheter": {
+    "staat": "Schweden",
+    "iran": "kritisch, liberal",
+    "israel": "ausgewogen, demokratisch-solidarisch",
+    "golf": "analytisch, globalisierungskritisch",
+    "ton": "liberal, intellektuell, mainstream"
+  },
+  "Expressen": {
+    "staat": "Schweden",
+    "iran": "emotional-kritisch, vereinfachend",
+    "israel": "solidarisch, aber reißerisch",
+    "golf": "kaum Fokus, westlich positioniert",
+    "ton": "boulevardesk, polarisierend, zugänglich"
+  },
+  "Svenska Dagbladet": {
+    "staat": "Schweden",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "solidarisch, transatlantisch",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, sachlich, analytisch"
+  },
+  "ABC_ES": {
+    "staat": "Spanien",
+    "iran": "konservativ-kritisch, monarchietreu",
+    "israel": "solidarisch, traditionell",
+    "golf": "stabilitätsorientiert, wirtschaftlich",
+    "ton": "konservativ-monarchistisch, traditionell"
+  },
+  "El Mundo": {
+    "staat": "Spanien",
+    "iran": "kritisch, investigativ",
+    "israel": "ausgewogen, demokratisch-solidarisch",
+    "golf": "wirtschaftlich interessiert, neutral",
+    "ton": "mitte-rechts, sachlich, debattenfreudig"
+  },
+  "El Pais": {
+    "staat": "Spanien",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "differenziert, pro-EU",
+    "golf": "progressiv, entwicklungspolitisch",
+    "ton": "linksliberal, intellektuell, pro-europäisch"
+  },
+  "La Vanguardia": {
+    "staat": "Spanien (Katalonien)",
+    "iran": "kritisch, regional-liberal",
+    "israel": "ausgewogen, wirtschaftlich interessiert",
+    "golf": "stabilitätsorientiert, handelsfokussiert",
+    "ton": "regional-liberal, sachlich, katalanisch"
+  },
+  "ABC_News_AU": {
+    "staat": "Australien (öffentlich-rechtlich)",
+    "iran": "sachlich-kritisch, menschenrechtsorientiert",
+    "israel": "ausgewogen, demokratisch-solidarisch",
+    "golf": "neutral, entwicklungspolitisch reflektiert",
+    "ton": "faktisch, neutral, öffentlich-rechtlich"
+  },
+  "Financial Review": {
+    "staat": "Australien",
+    "iran": "wirtschaftsorientiert, wenig Fokus",
+    "israel": "neutral, handelsfokussiert",
+    "golf": "pro-Business, investitionsfreundlich",
+    "ton": "sachlich, wirtschaftsliberal"
+  },
+  "The Australian": {
+    "staat": "Australien",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "solidarisch, transatlantisch",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, national, sachlich"
+  },
+  "Folha de S.Paulo": {
+    "staat": "Brasilien",
+    "iran": "kritisch, demokratisch orientiert",
+    "israel": "ausgewogen, menschenrechtsfokussiert",
+    "golf": "entwicklungspolitisch reflektiert",
+    "ton": "liberal, investigativ, gesellschaftskritisch"
+  },
+  "Cankaoxiaoxi": {
+    "staat": "China (staatlich)",
+    "iran": "pro-Beijing-Linie, strategisch ausgerichtet",
+    "israel": "kritisch bei Konflikten, staatskonform",
+    "golf": "propagandistisch, anti-westlich",
+    "ton": "staatlich, narrativgesteuert, konform"
+  },
+  "South China Morning Post": {
+    "staat": "Hongkong/China",
+    "iran": "differenziert, China-influenced",
+    "israel": "ausgewogen, wirtschaftlich interessiert",
+    "golf": "regional-fokussiert, handelsorientiert",
+    "ton": "sachlich, nuanciert, China-nah"
+  },
+  "The Hindu": {
+    "staat": "Indien",
+    "iran": "kritisch, nicht-aligniert traditionell",
+    "israel": "ausgewogen, diplomatisch",
+    "golf": "entwicklungspolitisch, südlich-solidarisch",
+    "ton": "linksliberal, analytisch, intellektuell"
+  },
+  "Haaretz": {
+    "staat": "Israel",
+    "iran": "kritisch gegenüber Regime, menschenrechtsorientiert",
+    "israel": "kritisch-solidarisch, innenpolitisch differenziert",
+    "golf": "progressiv, zivilgesellschaftsnah",
+    "ton": "linksliberal, intellektuell, investigativ"
+  },
+  "Jerusalem Post": {
+    "staat": "Israel",
+    "iran": "stark kritisch, sicherheitsfokussiert",
+    "israel": "solidarisch, regierungsnah möglich",
+    "golf": "sicherheitsorientiert, transatlantisch",
+    "ton": "konservativ, sicherheitsbewusst, mainstream"
+  },
+  "Nikkei Asia": {
+    "staat": "Japan/Asien",
+    "iran": "wirtschaftsorientiert, analytisch",
+    "israel": "neutral, handelsfokussiert",
+    "golf": "pro-Business, investitionsfreundlich",
+    "ton": "sachlich, wirtschaftsliberal, regional"
+  },
+  "Yomiuri Shimbun": {
+    "staat": "Japan",
+    "iran": "konservativ-kritisch, sicherheitsorientiert",
+    "israel": "solidarisch, pro-US-Allianz",
+    "golf": "wirtschaftsliberal, stabilitätsorientiert",
+    "ton": "konservativ, etabliert, sachlich"
+  },
+  "Chosun Ilbo": {
+    "staat": "Südkorea",
+    "iran": "konservativ-kritisch, sicherheitsfokussiert",
+    "israel": "solidarisch, technologieaffin",
+    "golf": "wirtschaftsliberal, innovationsorientiert",
+    "ton": "konservativ, mainstream, sachlich"
+  },
+  "Hankyoreh": {
+    "staat": "Südkorea",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "differenziert, friedensorientiert",
+    "golf": "progressiv, entwicklungspolitisch",
+    "ton": "progressiv, gesellschaftskritisch, alternativ"
+  },
+  "Ahval": {
+    "staat": "Türkei (Exil)",
+    "iran": "kritisch gegenüber Autoritarismus",
+    "israel": "ausgewogen, menschenrechtsorientiert",
+    "golf": "transparent, korruptionskritisch",
+    "ton": "unabhängig, investigativ, oppositionell"
+  },
+  "Cumhuriyet": {
+    "staat": "Türkei",
+    "iran": "säkular-kritisch, oppositionell",
+    "israel": "differenziert, säkular-demokratisch",
+    "golf": "kritisch bei Korruption/Unterdrückung",
+    "ton": "säkular, oppositionell, intellektuell"
+  },
+  "Huerriyet": {
+    "staat": "Türkei",
+    "iran": "mainstream, regierungsnah möglich",
+    "israel": "vorsichtig, wirtschaftlich interessiert",
+    "golf": "stabilitätsorientiert, handelsfokussiert",
+    "ton": "mainstream, zugänglich, regierungsnah"
+  },
+  "Sabah": {
+    "staat": "Türkei (pro-Erdogan)",
+    "iran": "pro-Regierungslinie, strategisch",
+    "israel": "kritisch, staatskonform",
+    "golf": "propagandistisch, regierungsnah",
+    "ton": "agitatorisch, regierungstreu, polarisierend"
+  },
+  "Associated Press": {
+    "staat": "USA (Wire)",
+    "iran": "faktisch, neutral",
+    "israel": "ausgewogen, nachrichtenbasiert",
+    "golf": "neutral, global abdeckend",
+    "ton": "nüchtern, agenturtypisch, faktenfokussiert"
+  },
+  "Fox News": {
+    "staat": "USA",
+    "iran": "stark kritisch, sicherheitsfokussiert",
+    "israel": "solidarisch, pro-Regierung",
+    "golf": "wirtschaftsliberal, anti-regulatorisch",
+    "ton": "konservativ, polarisierend, emotional"
+  },
+  "NY Times": {
+    "staat": "USA",
+    "iran": "kritisch, menschenrechtsorientiert",
+    "israel": "differenziert, demokratisch-solidarisch",
+    "golf": "progressiv, entwicklungspolitisch",
+    "ton": "liberal, investigativ, intellektuell"
+  },
+  "Wall Street Journal": {
+    "staat": "USA",
+    "iran": "wirtschaftsorientiert, sicherheitskritisch",
+    "israel": "solidarisch, wirtschaftsliberal",
+    "golf": "pro-Business, innovationsfreundlich",
+    "ton": "wirtschaftsliberal, sachlich, konservativ (Editorial)"
+  },
+  "Washington Post": {
+    "staat": "USA",
+    "iran": "kritisch, investigativ",
+    "israel": "differenziert, demokratisch-solidarisch",
+    "golf": "progressiv, menschenrechtsorientiert",
+    "ton": "liberal, investigativ, aufklärend"
+  },
+  "Mail & Guardian": {
+    "staat": "Südafrika",
+    "iran": "kritisch, pan-afrikanisch",
+    "israel": "kritisch-solidarisch, menschenrechtsfokussiert",
+    "golf": "entwicklungspolitisch, korruptionskritisch",
+    "ton": "investigativ, progressiv, pan-afrikanisch"
+  },
+  "Bellingcat": {
+    "staat": "Global (OSINT)",
+    "iran": "faktenbasiert, menschenrechtsorientiert",
+    "israel": "ausgewogen, evidenzbasiert",
+    "golf": "transparent, korruptionskritisch",
+    "ton": "investigativ, OSINT-fokussiert, unabhängig"
+  },
+  "Reuters": {
+    "staat": "Global (Wire)",
+    "iran": "faktisch, neutral",
+    "israel": "ausgewogen, nachrichtenbasiert",
+    "golf": "neutral, global abdeckend",
+    "ton": "nüchtern, agenturtypisch, faktenfokussiert"
+  },
+  "Mark Reicher YT": {
+    "staat": "Deutschland (YouTube)",
+    "iran": "realistisch, geopolitisch-analytisch",
+    "israel": "sachlich, sicherheitsbewusst",
+    "golf": "strategisch, multipolar-reflektiert",
+    "ton": "analytisch, geopolitisch, edukativ"
+  },
+  "MrWissen2Go YT": {
+    "staat": "Deutschland (YouTube)",
+    "iran": "differenziert, bildungsorientiert",
+    "israel": "ausgewogen, faktenbasiert",
+    "golf": "entwicklungspolitisch reflektiert",
+    "ton": "pädagogisch, sachlich, zugänglich"
+  },
+  "T Heinrich Milgeschichte YT": {
+    "staat": "Deutschland (YouTube)",
+    "iran": "militärhistorisch, analytisch",
+    "israel": "sachlich, sicherheitsfokussiert",
+    "golf": "strategisch, konfliktanalytisch",
+    "ton": "militärhistorisch, sachlich, detailorientiert"
   }
 }

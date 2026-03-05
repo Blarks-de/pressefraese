@@ -40,6 +40,33 @@ Visualisierung:
 - Farbskala oder Ampelsystem
 - Tooltip mit kurzer Erklärung
 
+#### 2.1.1 Numerischer Bias-Score (für Filter-Logik)
+
+Zusätzlich zur visuellen Skala: numerischer Wert für programmatische Nutzung.
+
+Skala: `-0.8` bis `+0.8`
+- `-0.8` bis `-0.4`: stark links / progressiv
+- `-0.3` bis `-0.1`: leicht links / liberal
+- `-0.0` bis `+0.0`: neutral / ausgewogen
+- `+0.1` bis `+0.3`: leicht rechts / konservativ
+- `+0.4` bis `+0.8`: stark rechts / populistisch
+
+Beispiel-Einträge (aus `bias.json`):
+```json
+"ARD Tagesschau": { "bias_score": 0.0 },
+"Der Spiegel": { "bias_score": -0.5 },
+"FAZ": { "bias_score": +0.5 },
+"BILD": { "bias_score": +0.6 }
+
+Anwendung:
+Automatisches Zusammenstellen ausgewogener Feed-Mixe (z. B. -0.3 bis +0.3)
+Gegenüberstellung konträrer Perspektiven (-0.6 vs. +0.6)
+Sortierung nach "wie nah am Mainstream" oder "wie extrem"
+Wichtig:
+Der Score ist ein Werkzeug, kein Urteil.
+Er dient der Filterung, nicht der Bewertung.
+Manuelle Feinjustierung bleibt möglich
+
 ---
 
 ### 2.2 Staatsnähe (separater Faktor)
@@ -113,6 +140,8 @@ Pro Thema:
 Optional:
 - Schlüsselbegriffe nebeneinanderstellen
 - Narrative-Vergleich
+- Filter nach Bias-Score-Bereich
+
 
 ---
 
@@ -173,5 +202,24 @@ Sie macht Unterschiede sichtbar.
 - Dynamische Timeline pro Thema
 - Konflikt-Intensitätsanzeige
 - Globale Vergleichsansicht pro Ereignis
+- "Bias-Balance"-Modus: automatisch ausgewogene Quellenauswahl
+- Export-Funktion: "Zeige mir dieses Thema aus 5 verschiedenen Perspektiven"
 
 ---
+
+8. Technische Anker
+
+8.1 bias.json-Struktur
+>{
+  "MediumName": {
+    "staat": "Herkunftsland",
+    "iran": "Haltung zu Iran",
+    "israel": "Haltung zu Israel",
+    "golf": "Haltung zu Golf-Region",
+    "ton": "Journalistischer Stil",
+    "bias_score": -0.5,
+    "staatsnaehe": "unabhängig",
+    "eigentum": "Stiftung",
+    "finanzierung": "Spenden+Abo"
+  }
+}
