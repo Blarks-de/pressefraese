@@ -3,16 +3,27 @@
 
 Die Pressefräse ist ein Werkzeug, um zu sehen, wie verschiedene Medien über dieselbe Welt berichten.
 
-Ein privates Framework zur Aggregation, Analyse und Verdichtung internationaler Nachrichtenquellen. Die Pressefräse ist darauf ausgelegt, mediale Ausrichtungen (Bias) sichtbar zu machen und komplexe Nachrichtenlagen mittels lokaler KI (Ollama) zu "verdauen".
+Ein privates Framework zur Aggregation, Analyse und Verdichtung internationaler Nachrichtenquellen. 
+Die Pressefräse ist darauf ausgelegt, mediale Ausrichtungen (Bias) sichtbar zu machen und komplexe 
+Nachrichtenlagen mittels lokaler KI (Ollama) zu "verdauen".
 
 ### Die Geburtsstunde & der Kern-Prompt
-Der Grundgedanke entstand, als mir eine KI zum ersten Mal Nachrichten basierend auf folgendem System-Prompt aufbereitet hat:
+Der Grundgedanke entstand, als mir eine KI zum ersten Mal Nachrichten basierend auf folgendem 
+System-Prompt aufbereitet hat:
 
-> **Prompt:** "Erstelle eine sachliche Zusammenfassung der wichtigsten Themen aus den drei reichweitenstärksten überregionalen Nachrichtenmedien in **{LAND}** vom heutigen Tag.
->
-> Gib keine einzelnen Schlagzeilen wieder und zitiere nicht wörtlich. Fasse stattdessen zusammen, welche Themen die öffentliche Wahrnehmung heute dominieren. Sportberichte und Klatsch bitte vollständig ignorieren. Wirtschaftliche Kennzahlen und Geldbeträge bitte in Euro umrechnen.
-> 
-> Ordne die Themen nach Relevanz. Kennzeichne innenpolitische, außenpolitische und wirtschaftliche Themen getrennt. Wenn mehrere Medien dasselbe Thema bringen, hebe das als Schwerpunkt hervor. Die Zusammenfassung soll kurz und präzise sein. Nenne das berichtende Medium beim Namen."
+> **Prompt:** "Erstelle eine sachliche Zusammenfassung der wichtigsten Themen aus den drei
+reichweitenstärksten überregionalen Nachrichtenmedien in **{LAND}** vom heutigen
+Tag auf Deutsch. Gib keine einzelnen Schlagzeilen wieder und zitiere nicht wörtlich.
+
+Fasse stattdessen zusammen, welche Themen die öffentliche Wahrnehmung heute
+dominieren. Sportberichte und Klatsch bitte vollständig ignorieren.
+Wirtschaftliche Kennzahlen und Geldbeträge bitte in Euro umrechnen.
+Ordne die Themen nach Relevanz.
+
+Kennzeichne innenpolitische, außenpolitische und wirtschaftliche Themen getrennt.
+Wenn mehrere Medien dasselbe Thema bringen, hebe das als Schwerpunkt hervor.
+Die Zusammenfassung soll kurz und präzise sein. Nenne das berichtende Medium
+beim Namen."
 
 ---
 
@@ -26,8 +37,8 @@ https://blarks.de/news
 Eine Übersicht über geplante Funktionen und langfristige Ideen
 findet sich hier:
 
-→ 🗺️ [Projekt-Roadmap](docs/ROADMAP.md)
-→ 🗺️ [Ideen-Sammlung](docs/IDEEN.md)
+- 🗺️ [Projekt-Roadmap](docs/ROADMAP.md)
+- 🗺️ [Ideen-Sammlung](docs/IDEEN.md)
 
 ## 🛠️ Technische Architektur
 
@@ -38,10 +49,11 @@ findet sich hier:
 * **Infrastruktur:** Docker-basiert, läuft aktuell auf einem Strato VPS.
 
 ### KI-Integration (Ollama)
-Die Pressefräse nutzt eine Anbindung an **Ollama** (gehostet auf dem **Dockfish**), um:
+Die Pressefräse nutzt eine Anbindung an **Ollama** (via Tailscale gehostet auf einem PC zu Hause), um:
 * Artikel inhaltlich zu gruppieren.
 * Länder-Digests im HTML-Format zu generieren (`data/digest-*.html`).
 * Nachrichten zu "verdauen" und wesentliche Narrative zu extrahieren.
+* (geplant) Youtube Videos inhaltlich zusammenfassen.
 
 ## 📊 Features
 * **Multi-Tab Dashboard:**
