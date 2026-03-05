@@ -14,13 +14,13 @@ System-Prompt aufbereitet hat:
 > **Prompt:** "Erstelle eine sachliche Zusammenfassung der wichtigsten Themen aus den drei
 reichweitenstärksten überregionalen Nachrichtenmedien in **{LAND}** vom heutigen
 Tag auf Deutsch. Gib keine einzelnen Schlagzeilen wieder und zitiere nicht wörtlich.
-
-Fasse stattdessen zusammen, welche Themen die öffentliche Wahrnehmung heute
+>
+>Fasse stattdessen zusammen, welche Themen die öffentliche Wahrnehmung heute
 dominieren. Sportberichte und Klatsch bitte vollständig ignorieren.
 Wirtschaftliche Kennzahlen und Geldbeträge bitte in Euro umrechnen.
 Ordne die Themen nach Relevanz.
-
-Kennzeichne innenpolitische, außenpolitische und wirtschaftliche Themen getrennt.
+>
+>Kennzeichne innenpolitische, außenpolitische und wirtschaftliche Themen getrennt.
 Wenn mehrere Medien dasselbe Thema bringen, hebe das als Schwerpunkt hervor.
 Die Zusammenfassung soll kurz und präzise sein. Nenne das berichtende Medium
 beim Namen."
