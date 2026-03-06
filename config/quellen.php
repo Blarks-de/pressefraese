@@ -16,19 +16,38 @@ if (file_exists($mdFile)) {
 
         // 2. Tabellenzeile parsen
         if (str_contains($line, '|') && !str_contains($line, ':---') && !str_contains($line, 'Medium / Quelle')) {
-            $parts = explode('|', $line);
-            if (count($parts) < 7) continue;
+            $parts = array_map('trim', explode('|', $line));
+            if (count($parts) < 9) continue; // Jetzt 8 Spalten + Ränder = 9
 
-            $rss = trim($parts[6]);
+            // RSS-URL säubern: Backticks und Whitespace entfernen
+            $rss = trim(str_replace('`', '', $parts[6]));
+            $metaRaw = trim($parts[8], '`');
             
             // Nur Quellen mit RSS oder YouTube aufnehmen
-            if (!empty($rss) && !str_contains($rss, 'kein RSS')) {
+            if (!empty($rss) && stripos($rss, 'kein rss') === false) {
+                
+                // Meta parsen (optional, aber nützlich)
+                $meta = [];
+                if (!empty($metaRaw)) {
+                    foreach (explode('|', $metaRaw) as $pair) {
+                        if (strpos($pair, ':') !== false) {
+                            [$k, $v] = explode(':', $pair, 2);
+                            $meta[trim($k)] = trim($v);
+                        }
+                    }
+                }
+                
                 $quellen[$currentRegion][] = [
                     'name'        => trim(str_replace('**', '', $parts[2])),
                     'flag'        => trim($parts[1]),
                     'url'         => trim($parts[5]),
-                    'rss'         => ($rss === '*(YouTube)*') ? trim($parts[5]) : $rss,
+                    'rss' => (stripos($rss, 'youtube') !== false) ? trim($parts[5]) : $rss, // $rss ist bereits gesäubert
                     'ausrichtung' => trim($parts[3]),
+                    'status'      => trim($parts[7]), // ✅ 💰 ❌
+                    'bias_score'  => isset($meta['bias']) ? floatval($meta['bias']) : 0.0,
+                    'state_type'  => $meta['state'] ?? 'unknown',
+                    'owner'       => $meta['owner'] ?? 'unknown',
+                    'paywall'     => $meta['paywall'] ?? null,
                 ];
             }
         }

@@ -1,6 +1,12 @@
 <?php
 // index.php - Newsfräse Dashboard
 require_once __DIR__ . '/scan/functions.php';
+// AJAX-Scan-Trigger abfangen
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['ajax_scan'])) {
+    header('Content-Type: application/json');
+    require __DIR__ . '/scan/scraper.php';
+    exit;
+}
 
 // 1. Konfiguration & Status laden
 $quellenFile = __DIR__ . '/config/quellen.php';
@@ -45,6 +51,25 @@ foreach ($quellen as $regionName => $sources) {
 function make_anchor_id($name) {
     return strtolower(preg_replace('/[^a-zA-Z0-9]/', '-', $name));
 }
+
+// Helper: Bias-Farbe bestimmen
+function bias_color($score) {
+    if ($score < -0.4) return '#4ade80';    // grün = links
+    if ($score < -0.1) return '#86efac';    // hellgrün
+    if ($score <= 0.1) return '#94a3b8';    // grau = neutral
+    if ($score <= 0.4) return '#fbbf24';    // gelb
+    return '#f87171';                        // rot = rechts
+}
+
+// Helper: Status-Emoji als HTML
+function status_badge($status) {
+    return match(trim($status)) {
+        '✅' => '<span class="status-badge ok" title="Feed aktiv">●</span>',
+        '💰' => '<span class="status-badge paywall" title="Paywall">●</span>',
+        '❌' => '<span class="status-badge fail" title="Kein RSS">●</span>',
+        default => '<span class="status-badge unknown" title="Unbekannt">●</span>'
+    };
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -53,6 +78,56 @@ function make_anchor_id($name) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Die Pressefräse</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* Bias-Indicator */
+        .bias-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        /* Status-Badges */
+        .status-badge {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .status-badge.ok { background: #22c55e; }
+        .status-badge.paywall { background: #f59e0b; }
+        .status-badge.fail { background: #ef4444; }
+        .status-badge.unknown { background: #94a3b8; }
+        /* Sources-Tab Tabelle */
+        .sources-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .sources-table th {
+            text-align: left;
+            padding: 8px 12px;
+            background: #1a1a2e;
+            position: sticky;
+            top: 0;
+        }
+        .sources-table td {
+            padding: 6px 12px;
+            border-bottom: 1px solid #333;
+        }
+        .sources-table tr:hover {
+            background: #16213e;
+        }
+        .bias-score {
+            font-family: monospace;
+            font-size: 0.85rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background: #0f3460;
+        }
+    </style>
 </head>
 <body>
 
@@ -62,10 +137,11 @@ function make_anchor_id($name) {
     </div>
     <h1><u>Die Pressefräse</u></h1>
     <p style="color:#888; margin-bottom:5px;">Nachrichten aus Barmbek, Hamburg, Deutschland, Europa und der Welt</p>
+    <p>Die Pressefräse auf Github <a href="https://github.com/Blarks-de/pressefraese" target="_blank">https://github.com/Blarks-de/pressefraese</a></p>
     <small>Letztes Update: <?= htmlspecialchars($timestamp) ?></small>
 
     <div class="disclaimer-box">
-        <p><strong>Hinweis:</strong> Die „Pressefräse“ ist ein rein privates, nicht-kommerzielles Experimentier- und Lernprojekt.</p>
+        <p><strong>Hinweis:</strong> Die „Pressefräse" ist ein rein privates, nicht-kommerzielles Experimentier- und Lernprojekt.</p>
         <p>Die dargestellten Inhalte werden automatisiert aus öffentlich zugänglichen Quellen aggregiert und<br>
         dienen ausschließlich technischen Testzwecken.</p>
         <p>Es besteht kein Anspruch auf redaktionelle Prüfung, Vollständigkeit oder Neutralität.<br>
@@ -92,6 +168,8 @@ function make_anchor_id($name) {
 </nav>
 
 <main class="container">
+    
+    <!-- TAB: News Roh -->
     <div id="tab-raw" class="tab-panel <?= $activeTab === 'raw' ? 'active' : '' ?>">
         <?php foreach ($regionOrder as $region): ?>
             <?php if (empty($regionsWithData[$region])) continue; ?>
@@ -107,12 +185,16 @@ function make_anchor_id($name) {
                     $articles = $data['articles'];
                     if (empty($articles)) continue; 
                     $sourceAnchor = make_anchor_id($meta['name']);
+                    $biasScore = $meta['bias_score'] ?? 0;
+                    $biasCol = bias_color($biasScore);
                 ?>
                     <div class="source-block" id="<?= $sourceAnchor ?>">
                         <h3 class="source-header">
                             <span class="flag"><?= htmlspecialchars($meta['flag'] ?? '') ?></span>
+                            <span class="bias-indicator" style="background:<?= $biasCol ?>" title="Bias-Score: <?= $biasScore ?>"></span>
                             <?= htmlspecialchars($meta['name']) ?>
                             <span class="article-count">(<?= count($articles) ?>)</span>
+                            <?= status_badge($meta['status'] ?? '✅') ?>
                         </h3>
 
                         <div class="news-grid">
@@ -134,6 +216,7 @@ function make_anchor_id($name) {
         <?php endforeach; ?>
     </div>
 
+    <!-- TAB: Verdaute News (Digest) -->
     <div id="tab-digest" class="tab-panel <?= $activeTab === 'digest' ? 'active' : '' ?>">
         <h1>🧠 Länder-Digests</h1>
         <?php
@@ -141,9 +224,73 @@ function make_anchor_id($name) {
         if ($digestFiles) {
             usort($digestFiles, fn($a, $b) => filemtime($b) <=> filemtime($a));
             foreach ($digestFiles as $file) echo file_get_contents($file);
+        } else {
+            echo "<p style='color:#888'>Noch keine Digests vorhanden. Bitte zuerst scannen.</p>";
         }
         ?>
     </div>
+
+    <!-- TAB: RSS Quellenstatus (NEU - war fehlend!) -->
+    <div id="tab-sources" class="tab-panel <?= $activeTab === 'sources' ? 'active' : '' ?>">
+        <h1>🗂️ RSS-Quellenstatus</h1>
+        <p style="color:#888; margin-bottom:20px;">
+            Übersicht aller konfigurierten Quellen mit Bias-Score, RSS-Status und Eigentümer-Info.
+        </p>
+        
+        <table class="sources-table">
+            <thead>
+                <tr>
+                    <th>Quelle</th>
+                    <th>Bias</th>
+                    <th>Status</th>
+                    <th>Staat/Eigentum</th>
+                    <th>RSS-Feed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($regionOrder as $region): ?>
+                    <?php foreach ($quellen[$region] as $source): 
+                        $biasScore = $source['bias_score'] ?? 0;
+                        $biasCol = bias_color($biasScore);
+                        $biasSign = $biasScore >= 0 ? '+' : '';
+                    ?>
+                    <tr>
+                        <td>
+                            <strong><?= htmlspecialchars($source['name']) ?></strong><br>
+                            <small style="color:#888"><?= htmlspecialchars($region) ?></small>
+                        </td>
+                        <td>
+                            <span class="bias-indicator" style="background:<?= $biasCol ?>" title="Bias-Score"></span>
+                            <span class="bias-score"><?= $biasSign . number_format($biasScore, 1) ?></span>
+                        </td>
+                        <td><?= status_badge($source['status'] ?? '✅') ?></td>
+                        <td>
+                            <small>
+                                <?= htmlspecialchars($source['state_type'] ?? '?') ?>
+                                <?php if (!empty($source['owner']) && $source['owner'] !== 'unknown'): ?>
+                                    / <?= htmlspecialchars($source['owner']) ?>
+                                <?php endif; ?>
+                                <?php if (!empty($source['paywall'])): ?>
+                                    <span style="color:#f59e0b">💰</span>
+                                <?php endif; ?>
+                            </small>
+                        </td>
+                        <td>
+                            <small>
+                                <?php if (!empty($source['rss']) && stripos($source['rss'], 'kein rss') === false): ?>
+                                    <a href="<?= htmlspecialchars($source['rss']) ?>" target="_blank" style="color:#60a5fa">RSS</a>
+                                <?php else: ?>
+                                    <span style="color:#888">–</span>
+                                <?php endif; ?>
+                            </small>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
 </main>
 
 <footer class="container" style="margin-top: 40px; padding: 20px; color: #666; font-size: 0.9rem; border-top: 1px solid #333; text-align: center;">
